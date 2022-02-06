@@ -24,7 +24,6 @@ def register(request):
 def profile(request):
     if request.method == 'POST':
         img_form = ProfilePictureForm(request.POST, request.FILES)
-        print('PRINT 1: ', img_form)
         context = {'img_form' : img_form }
         if img_form.is_valid():
             img_form.save(request)

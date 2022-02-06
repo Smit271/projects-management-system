@@ -3,6 +3,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="jumbotron">
+      <h1>ALREADY LOGGED IN</h1>
+      <br>
+      <hr>
+      <p>Go to <a href="{% url 'core:index' %}">Home Page</a></p>
+  </div>
+{% else %}
     <div class="content-section">
         <form method="post">
             {% csrf_token %}
@@ -24,5 +33,5 @@
             </small>
         </div>
     </div>
-
+    {% endif %}
 {% endblock %}

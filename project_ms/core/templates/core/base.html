@@ -18,7 +18,7 @@
   <meta name="author" content="Smit-Panchal">
   <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js">
   <meta name="google-site-verification" content="83fcqoPn-YTkXathQiicW-x3U2RWZh4PaPUzk91wtjY" />
-  <title>Project Manager -{% block title%} {% endblock %}</title>
+  <title>Project Manager {% block title%} {% endblock %}</title>
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
@@ -66,7 +66,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           {% if user.is_authenticated %}
-          <img src="{{ MEDIA_URL }}{{ logged_user.img.url }}" class="img-avatar" alt="{{ user }}">
+          <img src="{{ logged_user.img.url }}" class="img-avatar" alt="{{ user }}">
           {% else %}
           <img src="{% static 'core/img/avatar/blank_profile.png' %}" class="img-avatar" alt="{{ user }}">
           {% endif %}
