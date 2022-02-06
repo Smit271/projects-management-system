@@ -5,3 +5,8 @@ __pycache__/
 
 pms/
 project_ms/db.sqlite3
+
+
+core/media/*
+
+static/*
