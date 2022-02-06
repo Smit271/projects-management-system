@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
-
+{% block title%} Register {% endblock %}
 {% block breadcrumb %}
 <li class="breadcrumb-item">Home</li>
 <li class="breadcrumb-item">Users</li>
@@ -10,20 +10,22 @@
 {% block content %}
 <div class="container animated fadeIn">
     <div class="row justify-content-center">
-        <div class="col-6">
-            <div class="card-group">
-                <div class="card p-4 mb-5">
+        <div class="col-7">
+            <div class="card-group p-5">
+                <div class="card p-5 mb-5">
                     <div class="card-body">
-                        {% if created %}
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {% if messages %}
+                            {% for message in messages %}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            Congratulations, a new user was created!
-                        </div>
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
                         {% endif %}
                         {% csrf_token %}
-                        <h1>Users</h1>
+                        <h1>Register Yourself</h1>
                         <p class="text-muted">Create your Account here</p>
                         <form action="" method="post">
                             {% csrf_token %}
@@ -31,7 +33,7 @@
                                 <div class="input-group">
                                     {{ form.username }}
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        <span class="input-group-text">@</span>
                                     </div>
                                     {% if form.username.errors %}
                                     <ol>
@@ -74,13 +76,13 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    {{ form.email_id }}
+                                    {{ form.email }}
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                     </div>
-                                    {% if form.email_id.errors %}
+                                    {% if form.email.errors %}
                                     <ol>
-                                        {% for error in form.email_id.errors %}
+                                        {% for error in form.email.errors %}
                                         <li><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
@@ -89,13 +91,28 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    {{ form.password }}
+                                    {{ form.type }}
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    {% if form.type.errors %}
+                                    <ol>
+                                        {% for error in form.type.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form.password1 }}
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-key"></i></span>
                                     </div>
-                                    {% if form.password.errors %}
+                                    {% if form.password1.errors %}
                                     <ol>
-                                        {% for error in form.password.errors %}
+                                        {% for error in form.password1.errors %}
                                         <li><strong>{{ error|escape }}</strong></li>
                                         {% endfor %}
                                     </ol>
@@ -104,15 +121,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    {{ form.confirm_pass }}
+                                    {{ form.password2 }}
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-key"></i></span>
                                     </div>
 
                                 </div>
-                                {% if form.confirm_pass.errors %}
+                                {% if form.password2.errors %}
                                 <ol>
-                                    {% for error in form.confirm_pass.errors %}
+                                    {% for error in form.password2.errors %}
                                     <li><strong>{{ error|escape }}</strong></li>
                                     {% endfor %}
                                 </ol>
@@ -126,13 +143,14 @@
                                     Reset</button>
                             </div>
                         </form>
+
+                <div>
+                    <small class="text-muted">
+                        Already have an Account? <a class="ml-2" href="{% url 'core:login' %}">Sign In</a>
+                    </small>
+                </div>
                         {{ form.errors }}
                     </div>
-                </div>
-                <div class="border-top pt-3">
-                    <small class="text-muted">
-                        Already have an Account? <a class="ml-2" href="{% url 'user:login' %}">Sign In</a>
-                    </small>
                 </div>
             </div>
         </div>
