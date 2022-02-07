@@ -19,7 +19,7 @@
                                 <div class="media">
                                   <!-- <img class="rounded-circle account-img" src="{{ logged_user.img.url }}"> -->
                                   <div class="media-body">
-                                    <h2 class="account-heading">{{ user.username }}</h2>
+                                    <h2 class="account-heading">Welcome {{ user.username }}</h2>
                                     <p class="text-secondary">{{ user.email }}</p>
                                   </div>
                                 </div>
@@ -50,12 +50,12 @@
                 <div class="col-12">
                     <div class="social-box">
                         <ul class="mt-3">
-                            <!-- <li><span>Projects:
+                            <li><span>Assigned Projects:
                                     {% for project in logged_user.user.project_set.all %}
                                         <a href="">{{ project.name }},</a>
                                     {% endfor %}
                                 </span>
-                            </li> -->
+                            </li>
                         </ul>
                         <ul>
                             <li><span>Name: <a href="">{{ logged_user.user.get_full_name }}</a></span></li>
@@ -64,8 +64,16 @@
                         </ul>
                         <ul>
                             <li><span>Date joined: <span class="text-blue">{{ logged_user.user.date_joined }}</span></span></li>
-                            <li><span>Last login: <span class="text-blue">{{ logged_user.user.last_login }}</span></span>
-                            </li>
+                            <li><span>Last login: <span class="text-blue">{{ logged_user.user.last_login }}</span></span></li>
+                        </ul>
+
+                        <ul>
+                            <li><span>Type: 
+                                {% if logged_user.type == 1 %}
+                                <span class="text-blue">Employee</span></span></li>
+                                {% else %}
+                                <span class="text-blue">Intern</span></span></li>
+                                {% endif %}
                         </ul>
                     </div>
                 </div>
