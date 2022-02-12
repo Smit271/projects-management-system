@@ -89,8 +89,7 @@ class ProjectRegistrationForm(forms.ModelForm):
         Project.project_lead = self.cleaned_data['project_lead']
         # Project.efforts = self.cleaned_data['efforts']
         Project.status = self.cleaned_data['status']
-        Project.dead_line = self.cleaned_data['dead_line']
-        Project.company = self.cleaned_data['company']
+        Project.deadline = self.cleaned_data['deadline']
         Project.complete_per = self.cleaned_data['complete_per']
         Project.description = self.cleaned_data['description']
         # Project.slug = slugify(str(self.cleaned_data['name']))
@@ -109,14 +108,16 @@ class ProjectRegistrationForm(forms.ModelForm):
         super(ProjectRegistrationForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs['class'] = 'form-control'
         self.fields['name'].widget.attrs['placeholder'] = 'Project Name'
-        self.fields['efforts'].widget.attrs['class'] = 'form-control'
-        self.fields['efforts'].widget.attrs['placeholder'] = 'Efforts'
+        self.fields['project_lead'].widget.attrs['class'] = 'form-control'
+        self.fields['project_lead'].widget.attrs['placeholder'] = 'Lead'
+        # self.fields['efforts'].widget.attrs['class'] = 'form-control'
+        # self.fields['efforts'].widget.attrs['placeholder'] = 'Efforts'
         self.fields['status'].widget.attrs['class'] = 'form-control'
         self.fields['status'].widget.attrs['placeholder'] = 'Status'
-        self.fields['dead_line'].widget.attrs['class'] = 'form-control'
-        self.fields['dead_line'].widget.attrs['placeholder'] = 'Dead Line, type a date'
-        self.fields['company'].widget.attrs['class'] = 'form-control'
-        self.fields['company'].widget.attrs['placeholder'] = 'Company'
+        self.fields['deadline'].widget.attrs['class'] = 'form-control'
+        self.fields['deadline'].widget.attrs['placeholder'] = 'Dead-Line'
+        # self.fields['company'].widget.attrs['class'] = 'form-control'
+        # self.fields['company'].widget.attrs['placeholder'] = 'Company'
         self.fields['complete_per'].widget.attrs['class'] = 'form-control'
         self.fields['complete_per'].widget.attrs['placeholder'] = 'Complete %'
         self.fields['description'].widget.attrs['class'] = 'form-control'

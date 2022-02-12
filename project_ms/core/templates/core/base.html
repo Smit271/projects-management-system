@@ -115,13 +115,13 @@
           </li>
 
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-puzzle-piece"></i> Projects</a>
+            <a class="nav-link nav-dropdown-toggle" href="{% url 'projects:project' %}"><i class="fa fa-puzzle-piece"></i> Projects</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-plus ml-2"></i> New Project</a>
+                <a class="nav-link" href="{% url 'projects:create-project' %}"><i class="fa fa-plus ml-2"></i> New Project</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-plus ml-2"></i> New Task</a>
+                <a class="nav-link" href="{% url 'projects:create-task' %}"><i class="fa fa-plus ml-2"></i> New Task</a>
               </li>
             </ul>
           </li>

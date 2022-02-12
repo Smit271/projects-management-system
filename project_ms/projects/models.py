@@ -18,13 +18,13 @@ due = (
 # Create your models here.
 class Project(models.Model):
     name = models.CharField(max_length=80)
-    project_lead = models.OneToOneField(User)
-    assign = models.ManyToManyField(User)
+    project_lead = models.OneToOneField(User, on_delete=models.CASCADE)
+    assign = models.ManyToManyField(User, related_name="+")
     # efforts = models.DurationField()
     status = models.CharField(max_length=7, choices=status, default=1)
     complete_per = models.FloatField(max_length=2, validators = [MinValueValidator(0), MaxValueValidator(100)])
     description = models.TextField(blank=True)
-    dead_line = models.DateField()
+    deadline = models.DateField()
 
     add_date = models.DateField(auto_now_add=True)
     upd_date = models.DateField(auto_now_add=False, auto_now=True)
@@ -37,7 +37,7 @@ class Project(models.Model):
 
 
 class Task(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="+")
     assign = models.ManyToManyField(User)
     task_name = models.CharField(max_length=80)
     status = models.CharField(max_length=7, choices=status, default=1)

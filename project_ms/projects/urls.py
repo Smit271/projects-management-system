@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 app_name = 'projects'
 
 urlpatterns = [
-    path('/', views.projects, name='projects'),
-    path('create-project/', views.Project, name='create-project'),
-    path('create-task/', views.Task, name='create-task'),
+    path('', views.projects, name='project'),
+    path('create-project/', views.CreateProject, name='create-project'),
+    path('create-task/', views.CreateTask, name='create-task'),
 ]
