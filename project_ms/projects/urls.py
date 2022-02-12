@@ -9,4 +9,5 @@ urlpatterns = [
     path('', views.projects, name='project'),
     path('create-project/', views.CreateProject, name='create-project'),
     path('create-task/', views.CreateTask, name='create-task'),
+    path('project-detail/<int:id>/', views.ProjectDetail, name='project-detail'),
 ]
