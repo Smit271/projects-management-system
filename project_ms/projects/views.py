@@ -40,16 +40,24 @@ def ProjectDetail(request, id):
     # my_tasks = Task.objects.filter(assign = request.user.id)
     # avg_projects = Project.objects.filter(assign = request.user.id).aggregate(Avg('complete_per'))['complete_per__avg']
     # overdue_tasks = my_tasks.filter(due='2')
-    a = list(User.objects.filter(project__assign = id).values_list("first_name", flat = True))
+    a = list(User.objects.filter(project_assign = id).values_list("first_name", flat = True))
     task = Task.objects.filter(project_id = id).all()
+    task_details = []
     print(task)
+    overdue_count = 0
     for i in task:
+        if i.due == '2':
+            overdue_count = overdue_count + 1
         print(f"id : {i.id}, status {i.status}")
         b= list(User.objects.filter(task_assign = i.id).values_list("first_name", flat= True))
         # b = list(User.objects.filter(task__task_assign = i.id).values_list("username", flat = True))
         task_detail = {}
+        task_detail['name'] = i.task_name
+        task_detail['status'] = i.status
         task_detail['desc'] = i.description
         task_detail['assigned'] = b
+        task_detail['deadline'] = i.deadline
+        task_details.append(task_detail)
         print(task_detail)
         
     context = {
@@ -61,7 +69,8 @@ def ProjectDetail(request, id):
         'lead' : project.project_lead.first_name + " " + project.project_lead.last_name,
         'deadline' : project.deadline,
         'complete_per' : project.complete_per,
-        'task' : task
+        'task_overdue_count' : overdue_count,
+        'task' : task_details
     }
     return render(request, 'projects/projects-detail.html', context)
 
