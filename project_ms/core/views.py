@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from projects.models import Project, Task
 from user.models import User, UserProfile
 
 # Create your views here.
@@ -8,7 +9,13 @@ def index(request):
     return render(request, 'core/index.html')
 
 def dashboard(request):
-    return render(request, "core/dashboard.html")
+    res = {}
+    projects = Project.objects.all().count()
+    task = Task.objects.all().count()
+    res["project"] = projects
+    res["task"] = task
+    print(res)
+    return render(request, "core/dashboard.html", context=res)
 
 def context(request): # send context to base.html
     # if not request.session.session_key:

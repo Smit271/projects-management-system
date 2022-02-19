@@ -3,6 +3,7 @@ from projects.models import Project, Task
 from django.db.models import Avg
 from projects.forms import ProjectRegistrationForm, TaskRegistrationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def projects(request):
@@ -74,7 +75,7 @@ def ProjectDetail(request, id):
     }
     return render(request, 'projects/projects-detail.html', context)
 
-
+@login_required
 def CreateProject(request):
     if request.method == 'POST':
         form = ProjectRegistrationForm(request.POST)
@@ -96,7 +97,8 @@ def CreateProject(request):
             'form': form,
         }
         return render(request,'projects/create-project.html', context)
-
+        
+@login_required
 def CreateTask(request):
     if request.method == 'POST':
         form = TaskRegistrationForm(request.POST)

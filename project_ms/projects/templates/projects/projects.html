@@ -8,6 +8,7 @@
 <li class="breadcrumb-item active">Views</li>
 {% endblock breadcrumb%}
 {% block content %}
+{% if user.is_authenticated %}
 <div class="col-md-12">
     <h2>Overall Project details</h2>
     <div class="card">
@@ -73,7 +74,7 @@
                         </span>
                         <div class="bars">
                             <div class="progress progress-xs">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ project.complete_per }} %" aria-valuenow="{{ project.complete_per }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ project.complete_per }}%" aria-valuenow="{{ project.complete_per }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </li>
@@ -132,4 +133,18 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ projects.count }} Active Projects</strong>
+        </div>
+        <div class="card-body">
+            <h2>Login to see project list</h2>
+            <!-- <button>Sign in</button> -->
+            <a href="{% url 'core:login' %}">Sign in</a>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}

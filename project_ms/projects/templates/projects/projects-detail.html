@@ -26,8 +26,22 @@
                                 <small class="text-muted">Tasks</small>
                                 <br>
                                 <strong class="h4">{{ task|length }}</strong>
-                                <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                                    <canvas id="sparkline-chart-3" width="86" height="25" class="chartjs-render-monitor" style="display: block; width: 86px; height: 25px;"></canvas>
+                                <div class="chart-wrapper">
+                                    <div class="chartjs-size-monitor"
+                                        style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                        <div class="chartjs-size-monitor-expand"
+                                            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                            <div
+                                                style="position:absolute;width:1000000px;height:1000000px;left:0;top:0">
+                                            </div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink"
+                                            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                        </div>
+                                    </div>
+                                    <canvas id="sparkline-chart-3" width="86" height="25" class="chartjs-render-monitor"
+                                        style="display: block; width: 86px; height: 25px;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -37,8 +51,22 @@
                                 <small class="text-muted">Overdue Tasks </small>
                                 <br>
                                 <strong class="h4">{{ task_overdue_count }}</strong>
-                                <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                                    <canvas id="sparkline-chart-4" width="86" height="25" class="chartjs-render-monitor" style="display: block; width: 86px; height: 25px;"></canvas>
+                                <div class="chart-wrapper">
+                                    <div class="chartjs-size-monitor"
+                                        style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                        <div class="chartjs-size-monitor-expand"
+                                            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                            <div
+                                                style="position:absolute;width:1000000px;height:1000000px;left:0;top:0">
+                                            </div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink"
+                                            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                        </div>
+                                    </div>
+                                    <canvas id="sparkline-chart-4" width="86" height="25" class="chartjs-render-monitor"
+                                        style="display: block; width: 86px; height: 25px;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -48,54 +76,59 @@
 
                     <hr class="mt-0">
                     <ul class="horizontal-bars type-2">
-                    <li>
-                        <i class="fa fa-percent"></i>
-                        <span class="title">Complete</span>
-                        <span class="value">{{ complete_per }}%</span>
-                        <div class="bars">
-                            <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ complete_per }}%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                        <li>
+                            <i class="fa fa-percent"></i>
+                            <span class="title">Complete</span>
+                            <span class="value">{{ complete_per }}%</span>
+                            <div class="bars">
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar bg-warning" role="progressbar"
+                                        style="width: {{ complete_per }}%" aria-valuenow="43" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
                             </div>
+                        </li>
+                        <li class="divider"></li>
+                        <div>
+                            <h2>
+                                Lead : {{ lead }}
+                            </h2>
                         </div>
-                    </li>
-                    <li class="divider"></li>
-                    <div>
-                        <h2>
-                            Lead : {{ lead }}
-                        </h2>
-                    </div>
-                    <div class="">
-                        <h3>Team : {% if team %}
-                                    {% for mem in team %}
-                                        {{ mem }},
-                                    {% endfor %}
+                        <div class="">
+                            <h3>Team : {% if team %}
+                                {% for mem in team %}
+                                {{ mem }},
+                                {% endfor %}
                                 {% endif %}
-                        </h3>
-                    </div>
-                    <hr>
-                    <h3>Tasks under project</h3>
-                    {% for t in task %}
-                    <li class="my-2">
-                        {% if t.status == '1' %}
-                                <span class="badge badge-danger" style="width: 50px;">Stuck</span>
-                            {% elif t.status == '2' %}
-                                <span class="badge badge-info" style="width: 50px;">Working</span>
-                            {% else %}
-                                <span class="badge badge-success" style="width: 50px;">Done!</span>
-                            {% endif %}
-                        <span class="title ml-1">{{ t.name }} - &emsp;</span>
-                        {% for a in t.assigned %}
-                        <span class="title">{{ a }},</span>
-                        {% endfor %}
-                        <span class="value"> <span class="text-muted small">Deadline: </span>{{ t.deadline }}
-                        </span>
-                        <div class="bars">
-                            <div class="progress progress-xs">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ project.complete_per }} %" aria-valuenow="{{ project.complete_per }}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            </h3>
                         </div>
-                    </li>
-                    {% endfor %}
+                        <hr>
+                        <h3>Tasks under project</h3>
+                        {% for t in task %}
+                        <li class="my-2">
+                            {% if t.status == '1' %}
+                            <span class="badge badge-danger" style="width: 50px;">Stuck</span>
+                            {% elif t.status == '2' %}
+                            <span class="badge badge-info" style="width: 50px;">Working</span>
+                            {% else %}
+                            <span class="badge badge-success" style="width: 50px;">Done!</span>
+                            {% endif %}
+                            <span class="title ml-1">{{ t.name }} - &emsp;</span>
+                            {% for a in t.assigned %}
+                            <span class="title">{{ a }},</span>
+                            {% endfor %}
+                            <span class="value"> <span class="text-muted small">Deadline: </span>{{ t.deadline }}
+                            </span>
+                            <div class="bars">
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{ project.complete_per }} %"
+                                        aria-valuenow="{{ project.complete_per }}" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
 
@@ -106,6 +139,6 @@
         </div>
     </div>
 </div>
-    </div>
+</div>
 </div>
 {% endblock %}
