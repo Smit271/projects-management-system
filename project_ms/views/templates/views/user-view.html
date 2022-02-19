@@ -1,0 +1,100 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item">Home</li>
+<li class="breadcrumb-item">Views</li>
+<li class="breadcrumb-item active">Assigned to me</li>
+{% endblock breadcrumb %}
+{% block content %}
+<hr>
+<h3>Projects assigned to me</h3>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Project Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lead</th>
+            <th scope="col">Status</th>
+            <th scope="col">Deadline</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if projects %}
+        {% for project in projects %}
+        {% if project.status == '1' %}
+        <tr class="table-danger">
+            <th scope="row"><a href="/project/project-detail/{{ project.id }}"> {{project.id}} </a></th>
+            <td>{{project.name}}</td>
+            <td>{{project.project_lead.first_name}} {{project.project_lead.last_name}}</td>
+            <td>Stuck</td>
+            <td>{{project.deadline}}</td>
+        </tr>
+        {% elif project.status == '2' %}
+        <tr class="table-info">
+            <th scope="row"><a href="/project/project-detail/{{ project.id }}"> {{project.id}} </a></th>
+            <td>{{project.name}}</td>
+            <td>{{project.project_lead.first_name}} {{project.project_lead.last_name}}</td>
+            <td>Working</td>
+            <td>{{project.deadline}}</td>
+        </tr>
+        {% else %}
+        <tr class="table-success">
+            <th scope="row"><a href="/project/project-detail/{{ project.id }}"> {{project.id}} </a></th>
+            <td>{{project.name}}</td>
+            <td>{{project.project_lead.first_name}} {{project.project_lead.last_name}}</td>
+            <td>Done</td>
+            <td>{{project.deadline}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<hr>
+<h3>Tasks assigned to me</h3>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Task Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Project Id</th>
+            <th scope="col">Status</th>
+            <th scope="col">Deadline</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if tasks %}
+        {% for task in tasks %}
+        {% if task.status == '1' %}
+        <tr class="table-danger">
+            <th scope="row"> {{task.id}}</th>
+            <td>{{task.task_name}}</td>
+            <td>{{task.project_id}}</td>
+            <td>Stuck</td>
+            <td>{{task.deadline}}</td>
+        </tr>
+        {% elif project.status == '2' %}
+        <tr class="table-info">
+            <th scope="row">{{task.id}}</th>
+            <td>{{task.task_name}}</td>
+            <td>{{task.project_id}}</td>
+            <td>Working</td>
+            <td>{{task.deadline}}</td>
+        </tr>
+        {% else %}
+        <tr class="table-success">
+            <th scope="row">{{task.id}}</th>
+            <td>{{task.task_name}}</td>
+            <td>{{task.project_id}}</td>
+            <td>Done</td>
+            <td>{{task.deadline}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
