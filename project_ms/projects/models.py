@@ -18,7 +18,7 @@ due = (
 # Create your models here.
 class Project(models.Model):
     name = models.CharField(max_length=80)
-    project_lead = models.OneToOneField(User, on_delete=models.CASCADE)
+    project_lead = models.ForeignKey(User, on_delete=models.CASCADE)
     assign = models.ManyToManyField(User, related_name="project_assign")
     # efforts = models.DurationField()
     status = models.CharField(max_length=7, choices=status, default=1)
