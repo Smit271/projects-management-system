@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from projects.models import Project, Task
 from user.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # def index(request):
@@ -20,7 +21,7 @@ def project_view(request):
     }
     return render(request, "views/index.html", context)
 
-
+@login_required
 def users_view(request):
     print("Views User")
     my_projects = Project.objects.filter(assign = request.user.id).order_by("id")
