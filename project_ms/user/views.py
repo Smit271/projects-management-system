@@ -42,7 +42,7 @@ def profile(request):
 def UpdateProfile(request, id):
     if request.method == 'POST':
         obj = User.objects.get(pk = id)
-        print(obj)
+        # print(obj)
         u_form = ProfileUpdateForm(request.POST, instance=obj)
         context = {'form': u_form}
         if u_form.is_valid():

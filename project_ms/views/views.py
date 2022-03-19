@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def project_view(request):
-    print("Views Project")
+    # print("Views Project")
     projects = Project.objects.all().order_by("id")
     # print(projects)
 
@@ -23,7 +23,7 @@ def project_view(request):
 
 @login_required
 def users_view(request):
-    print("Views User")
+    # print("Views User")
     my_projects = Project.objects.filter(assign = request.user.id).order_by("id")
     my_tasks = Task.objects.filter(assign = request.user.id).order_by("id")
 
