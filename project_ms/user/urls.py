@@ -8,4 +8,5 @@ app_name = 'user'
 urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+    path('update-profile/<int:id>', views.UpdateProfile, name='update-profile'),
 ]

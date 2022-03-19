@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse
-from .forms import UserRegisterForm, ProfilePictureForm
+from .forms import UserRegisterForm, ProfilePictureForm, ProfileUpdateForm
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 # Create your views here.
 
 def register(request):
@@ -36,3 +36,25 @@ def profile(request):
         img_form = ProfilePictureForm()
         context = {'img_form' : img_form }
         return render(request, 'user/profile.html', context)
+
+
+@login_required
+def UpdateProfile(request, id):
+    if request.method == 'POST':
+        obj = User.objects.get(pk = id)
+        print(obj)
+        u_form = ProfileUpdateForm(request.POST, instance=obj)
+        context = {'form': u_form}
+        if u_form.is_valid():
+            u_form.save()
+            messages.success(request, ('Profile updated successfully'))
+            return redirect(reverse('user:profile'))
+        else:
+            return render(request, 'user/update-profile.html', context)
+    else:
+        obj = User.objects.get(pk = id)
+        u_form = ProfileUpdateForm(instance=obj)
+        context = {
+            'form': u_form,
+        }
+        return render(request,'user/update-profile.html', context)

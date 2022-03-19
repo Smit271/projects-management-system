@@ -8,6 +8,16 @@
 {% endblock breadcrumb%}
 
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
 <div class="container-fluid">
     <div id="ui-view" style="opacity: 1;">
         <div class="animated fadeIn">
@@ -35,6 +45,9 @@
                                         </div>
                                     </div>
                                 </form>
+                                <a href="/user/update-profile/{{ user.id }}">
+                                    <button class="btn btn-primary btn-sm my-2" type="submit">Update Profile</button>
+                                </a>
                                     <!-- <li>
                                         <strong>{{ logged_user.user.project_set.all.count }}</strong>
                                         <span>projects</span>
@@ -69,7 +82,7 @@
 
                         <ul>
                             <li><span>Type: 
-                                {% if logged_user.type == 1 %}
+                                {% if logged_user.type == '1' %}
                                 <span class="text-blue">Employee</span></span></li>
                                 {% else %}
                                 <span class="text-blue">Intern</span></span></li>
