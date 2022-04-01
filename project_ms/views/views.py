@@ -1,5 +1,3 @@
-from multiprocessing import context
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from projects.models import Project, Task
 from user.models import User
